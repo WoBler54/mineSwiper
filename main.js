@@ -128,7 +128,7 @@ function revealCell(row, column) {
             location.reload();
         }
         
-        alert(alertMessage , life , endingAlert);
+        alert(alertMessage + life + endingAlert);
 
     } else if (cell == 0) {
         cellElement.style.background = '#767676';
