@@ -1,8 +1,12 @@
 
 let fieldArray = [];
-let life = 5;
+let life = 2;
 let alertMessage = 'БАБАХ! осталось ';
 let endingAlert = ' жизни.';
+let usedBombCount = 0;
+let usedFlagCount = 0;
+let allBombs = 36;
+let usedCorrectFlagCount = 0;
 
 
 function drawHeart(strI,strJ){
@@ -121,15 +125,19 @@ function revealCell(row, column) {
         
         cellElement.innerText = '💣'; 
         life--;
+        usedBombCount++;
         life == 1 ? endingAlert = ' жизнь.' : null;
+
 
         
         alert(alertMessage + life + endingAlert);
+
         
         if(life < 1 ){
             alert ( 'Tы проиграла =(');
             location.reload();
         }
+        usedBombCount + usedFlagCount  === 36 ? renderWinMessage() : null;
         
 
     } else if (cell == 0) {
@@ -140,13 +148,29 @@ function revealCell(row, column) {
 
 function setFlag(row, column) {
    
-    if (fieldArray[row][column] === '*') {
-        
+    
+    if (fieldArray[row][column] === '*') {      
+       
         const cellElement = document.querySelector(`table tr:nth-child(${row + 1}) td:nth-child(${column + 1})`);
         cellElement.innerText = '🚩';
+        usedFlagCount ++;    
+        console.log('flag is ' + usedFlagCount)  ;  
     }
+    console.log(usedBombCount + usedFlagCount );
+    usedBombCount + usedFlagCount  === 36 ? renderWinMessage() : null;
+      
 }
-
+function toMuchFlags(){
+    aler('Очень много флагов, так нельзя)');
+    location.reload();
+}
+function renderWinMessage(){
+    alert("Ты победила, поздравляю моя любимка ❤️❤️❤️")
+    setTimeout(() => {
+        location.reload();
+    }, 5000);
+    
+}
 
 const div = document.getElementById('div1');
 div.append(renderTable(19, 19, fieldArray));
