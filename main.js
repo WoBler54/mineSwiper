@@ -123,12 +123,14 @@ function revealCell(row, column) {
         life--;
         life == 1 ? endingAlert = ' жизнь.' : null;
 
+        
+        alert(alertMessage + life + endingAlert);
+        
         if(life < 1 ){
             alert ( 'Tы проиграла =(');
             location.reload();
         }
         
-        alert(alertMessage + life + endingAlert);
 
     } else if (cell == 0) {
         cellElement.style.background = '#767676';
