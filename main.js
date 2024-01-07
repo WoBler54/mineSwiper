@@ -1,5 +1,10 @@
 
 let fieldArray = [];
+let life = 5;
+let alertMessage = 'БАБАХ! осталось ';
+let endingAlert = ' жизни.';
+
+
 function drawHeart(strI,strJ){
 
     var arrIStr = strI.split(' ');
@@ -115,8 +120,11 @@ function revealCell(row, column) {
     if (cell === '*') {
         
         cellElement.innerText = '💣'; 
+        life--;
+        life == 1 ? endingAlert = ' жизнь.' : null;
         
-        alert('BOOM');
+        alert(alertMessage , life , endingAlert);
+
     } else if (cell == 0) {
         cellElement.style.background = '#767676';
         
