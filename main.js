@@ -92,6 +92,10 @@ function renderTable(rows, columns, field) {
             cell.addEventListener('click', function() {
                 revealCell(i, j);
             });
+            cell.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                setFlag(i, j);
+            });
             row.appendChild(cell);
         }
 
@@ -111,6 +115,7 @@ function revealCell(row, column) {
     if (cell === '*') {
         
         cellElement.innerText = '💣'; 
+        
         alert('BOOM');
     } else if (cell == 0) {
         cellElement.style.background = '#767676';
@@ -118,6 +123,14 @@ function revealCell(row, column) {
     }else cellElement.innerText = cell;
 }
 
+function setFlag(row, column) {
+   
+    if (fieldArray[row][column] === '*') {
+        
+        const cellElement = document.querySelector(`table tr:nth-child(${row + 1}) td:nth-child(${column + 1})`);
+        cellElement.innerText = '🚩';
+    }
+}
 
 
 const div = document.getElementById('div1');
