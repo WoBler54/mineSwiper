@@ -122,6 +122,11 @@ function revealCell(row, column) {
         cellElement.innerText = '💣'; 
         life--;
         life == 1 ? endingAlert = ' жизнь.' : null;
+
+        if(life < 1 ){
+            alert ( 'Tы проиграла =(');
+            location.reload();
+        }
         
         alert(alertMessage , life , endingAlert);
 
